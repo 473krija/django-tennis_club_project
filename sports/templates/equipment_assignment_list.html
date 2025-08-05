@@ -1,0 +1,37 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Equipment Assignments
+{% endblock %}
+
+{% block content %}
+<h1>Equipment Assignments</h1>
+
+<table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Tournament</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Equipment</th>
+            <th>Assigned Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assignment in assignments %}
+        <tr>
+            <td>{{ assignment.tournament_schedule.tournament.sportsevent }}</td>
+            <td>{{ assignment.tournament_schedule.scheduled_date|date:"Y-m-d H:i" }}</td>
+            <td>{{ assignment.tournament_schedule.venue.name }}</td>
+            <td>{{ assignment.equipment.name }}</td>
+            <td>{{ assignment.assigned_quantity }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No equipment assignments found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

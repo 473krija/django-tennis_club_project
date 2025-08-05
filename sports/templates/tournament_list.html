@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tournaments</title>
+</head>
+<body>
+    <h1>All Tournaments</h1>
+    <ul>
+        {% for t in tournaments %}
+            <li>{{ t.sportsevent }} - {{ t.date_held }} ({{ t.participant.firstname }})</li>
+        {% empty %}
+            <li>No tournaments found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

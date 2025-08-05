@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block title %}Tournament Schedule{% endblock %}
+
+{% block content %}
+<h2>All Tournament Schedules</h2>
+<table border="1">
+    <tr>
+        <th>Tournament</th>
+        <th>Venue</th>
+        <th>Date</th>
+    </tr>
+    {% for schedule in schedules %}
+    <tr>
+        <td>{{ schedule.tournament.sportsevent }}</td>
+        <td>{{ schedule.venue.name }} ({{ schedule.venue.location }})</td>
+        <td>{{ schedule.schedule_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
