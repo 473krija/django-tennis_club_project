@@ -1,0 +1,33 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Equipment List
+{% endblock %}
+
+{% block content %}
+<h1>Available Equipment</h1>
+
+<table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Equipment Name</th>
+            <th>Condition</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for equipment in equipments %}
+        <tr>
+            <td>{{ equipment.name }}</td>
+            <td>{{ equipment.condition }}</td>
+            <td>{{ equipment.quantity }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No equipment found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

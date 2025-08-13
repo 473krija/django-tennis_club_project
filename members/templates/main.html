@@ -1,0 +1,88 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My Tennis Club
+{% endblock %}
+
+{% block content %}
+  <h1>🏸 My Tennis Club</h1>
+
+  <!-- Members Section -->
+  <h2>Members</h2>
+  <ul>
+    {% for member in members %}
+      <li>
+        {{ member.firstname }} {{ member.lastname }}
+        <!-- Optional: Link to member details page -->
+        <a href="{% url 'details' member.id %}">View Details</a>
+      </li>
+    {% empty %}
+      <li>No members available.</li>
+    {% endfor %}
+  </ul>
+
+  <p>
+    Check out all our <a href="{% url 'members' %}">members list</a>
+  </p>
+
+  <hr>
+
+  <!-- Tournaments Section -->
+  <h2>Tournaments</h2>
+  <ul>
+    {% for tournament in tournaments %}
+      <li>
+        {{ tournament.sportsevent }} - {{ tournament.date_held }}
+        <br>
+        Participant: {{ tournament.participentlist.firstname }} {{ tournament.participentlist.lastname }}
+      </li>
+    {% empty %}
+      <li>No tournaments available.</li>
+    {% endfor %}
+  </ul>
+
+  <p>
+    View all <a href="{% url 'tournament_list' %}">tournaments</a>
+  </p>
+
+{% endblock %}
+
+
+
+
+<h2>Tournament Schedules</h2>
+<ul>
+  {% for schedule in tournament_schedules %}
+    <li>
+      {{ schedule.tournament.sportsevent }} - 
+      {{ schedule.venue.name }} on 
+      {{ schedule.scheduled_date }}
+    </li>
+  {% empty %}
+    <li>No tournament schedules available.</li>
+  {% endfor %}
+</ul>
+
+<h2>Equipment List</h2>
+<ul>
+  {% for equipment in equipments %}
+    <li>{{ equipment.name }} (Condition: {{ equipment.condition }}, Quantity: {{ equipment.quantity }})</li>
+  {% empty %}
+    <li>No equipment available.</li>
+  {% endfor %}
+</ul>
+
+<h2>Equipment Assignments</h2>
+<ul>
+  {% for assignment in equipment_assignments %}
+    <li>
+      {{ assignment.assigned_quantity }} {{ assignment.equipment.name }} 
+      for {{ assignment.tournament_schedule.tournament.sportsevent }}
+    </li>
+  {% empty %}
+    <li>No equipment assignments available.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+
